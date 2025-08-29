@@ -118,7 +118,7 @@ function App() {
           aria-live="polite"
           className="text-sm text-gray-600"
         >
-          Slide {current + 1} of {slides.length}
+          Slide {Math.ceil(current + 1)} of {slides.length}
         </div>
         <button
           onClick={() => sliderRef.current?.slickNext()}
