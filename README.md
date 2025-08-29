@@ -49,4 +49,8 @@ pnpm dev
 npm run preview
 ```
 
-### Netlify Link
+### Link
+
+
+
+https://saral-x-assignment.vercel.app/
