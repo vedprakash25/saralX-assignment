@@ -64,8 +64,8 @@ function App() {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 1.8,
+    slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
       {
