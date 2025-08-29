@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -82,13 +82,20 @@ function App() {
     beforeChange: (oldIndex, newIndex) => setCurrent(newIndex),
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "ArrowLeft") {
-      sliderRef.current?.slickPrev();
-    } else if (e.key === "ArrowRight") {
-      sliderRef.current?.slickNext();
-    }
-  };
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (["INPUT", "TEXTAREA"].includes(e.target.tagName)) return;
+
+      if (e.key === "ArrowRight") {
+        sliderRef.current?.slickNext();
+      } else if (e.key === "ArrowLeft") {
+        sliderRef.current?.slickPrev();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [sliderRef.current]);
 
   return (
     <section
@@ -96,7 +103,6 @@ function App() {
       aria-roledescription="carousel"
       aria-label="Image Carousel"
       role="region"
-      onKeyDown={handleKeyDown}
     >
       <div className="flex justify-between items-center mb-4">
         <button
